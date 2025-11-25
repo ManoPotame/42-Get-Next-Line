@@ -6,7 +6,7 @@
 /*   By: mcrenn <mcrenn@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:16:01 by mcrenn            #+#    #+#             */
-/*   Updated: 2025/11/23 12:25:53 by mcrenn           ###   ########.fr       */
+/*   Updated: 2025/11/25 14:17:20 by mcrenn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*current_line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!buffer)
 		buffer = ft_calloc(sizeof(char), 1);

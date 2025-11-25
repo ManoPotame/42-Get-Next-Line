@@ -6,7 +6,7 @@
 /*   By: mcrenn <mcrenn@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:15:54 by mcrenn            #+#    #+#             */
-/*   Updated: 2025/11/23 11:37:33 by mcrenn           ###   ########.fr       */
+/*   Updated: 2025/11/25 14:29:01 by mcrenn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	i = 0;
 	while (i < (nmemb * size))
 	{
-		(alloc[i]) = 0;
+		alloc[i] = 0;
 		i++;
 	}
 	return (alloc);
