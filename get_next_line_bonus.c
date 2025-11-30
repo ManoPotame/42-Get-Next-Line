@@ -6,7 +6,7 @@
 /*   By: mcrenn <mcrenn@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:16:01 by mcrenn            #+#    #+#             */
-/*   Updated: 2025/11/25 14:37:37 by mcrenn           ###   ########.fr       */
+/*   Updated: 2025/11/30 13:25:21 by mcrenn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*storer(char *buffer, int fd)
 	int		reader;
 
 	reader = 1;
-	stock = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	stock = malloc((size_t)BUFFER_SIZE + 1);
 	if (!stock)
 		return (NULL);
 	while (!ft_strchr(buffer, '\n') && reader > 0)
@@ -82,25 +82,24 @@ static char	*buffer_updater(char *buffer)
 	}
 	updated_buffer = ft_calloc(sizeof(char), ft_strlen(buffer) - i + 1);
 	if (!updated_buffer)
+	{
+		free(buffer);
 		return (NULL);
+	}
 	j = 0;
 	i++;
 	while (buffer[i])
-	{
-		updated_buffer[j] = buffer[i];
-		j++;
-		i++;
-	}
+		updated_buffer[j++] = buffer[i++];
 	free(buffer);
 	return (updated_buffer);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[1025];
+	static char	*buffer[1024];
 	char		*current_line;
 
-	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > 1023 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!buffer[fd])
 		buffer[fd] = ft_calloc(sizeof(char), 1);

@@ -6,7 +6,7 @@
 /*   By: mcrenn <mcrenn@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 09:16:01 by mcrenn            #+#    #+#             */
-/*   Updated: 2025/11/25 14:17:20 by mcrenn           ###   ########.fr       */
+/*   Updated: 2025/11/30 13:29:09 by mcrenn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*storer(char *buffer, int fd)
 	int		reader;
 
 	reader = 1;
-	stock = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	stock = malloc((size_t)BUFFER_SIZE + 1);
 	if (!stock)
 		return (NULL);
 	while (!ft_strchr(buffer, '\n') && reader > 0)
@@ -86,11 +86,7 @@ static char	*buffer_updater(char *buffer)
 	j = 0;
 	i++;
 	while (buffer[i])
-	{
-		updated_buffer[j] = buffer[i];
-		j++;
-		i++;
-	}
+		updated_buffer[j++] = buffer[i++];
 	free(buffer);
 	return (updated_buffer);
 }
